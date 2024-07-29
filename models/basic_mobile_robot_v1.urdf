@@ -38,9 +38,9 @@
 
     <link name="base_link">
         <visual>
-            <origin xyz="-0.65 0 0.445" rpy="0 0 0"/>
+            <origin xyz="0 -0.65 0.445" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://basic_mobile_robot/meshes/base.stl"/>
+                <mesh filename="package://mobile_robot/meshes/base.stl"/>
             </geometry>
             <material name="red">
                 <color rgba="1 0 0 1"/>
@@ -70,5 +70,165 @@
     </joint>
 
     <!--Wheels-->
+    <!--rear right wheel-->
+    <link name="rear_right_wheel">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mobile_robot/meshes/wheel.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+
+        <collsion>
+            <geometry>
+                <cylinder size="${wheel_radius} ${wheel_width}"/>
+            </geometry>
+        </collision>
+
+        <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <joint name="rear_right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="rear_right_wheel"/>
+        <origin xyz="0.8 -1.35 ${wheel_radius}" rpy="${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!--rear left wheel-->
+    <link name="rear_left_wheel">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://mobile_robot/meshes/wheel.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+
+        <collsion>
+            <geometry>
+                <cylinder size="${wheel_radius} ${wheel_width}"/>
+            </geometry>
+        </collision>
+
+        <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <joint name="rear_left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="rear_left_wheel"/>
+        <origin xyz="-0.8 -1.35 ${wheel_radius}" rpy="${pi/2} 0 0"/>
+        <axis xyz="0 0 -1"/>
+    </joint>
+
+    <!--steering joints-->
+    <!--right steering joint-->
+    <joint name="right_steering_joint" type="revolute">
+        <origin xyz="0.8 1.35 0.445" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="right_steer_link"/>
+        <axis xyz="0 0 1"/>
+        <dynmaics damping="0.01" friction="0.01"/>
+        <limit effort="1000" lower="-0.95" upper="0.95" velocity="10"/>
+    </joint>
+
+    <link name="right_steer_link">
+        <origin xyz="0 0 0" rpy="0 0 0">
+    </link>
+
+    <!--front right wheel-->
+    <link name="front_right_wheel">
+        <visual>
+            <origin xyz="0.8 1.35 ${wheel_radius}" rpy="${pi/2} 0 0"/>
+            <geometry>
+                <mesh filename="package://mobile_robot/meshes/wheel.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+
+        <collsion>
+            <geometry>
+                <cylinder size="${wheel_radius} ${wheel_width}"/>
+            </geometry>
+        </collision>
+
+        <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <joint name="front_right_wheel_joint" type="continuous">
+        <parent link="right_steer_link"/>
+        <child link="front_right_wheel"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+ <!--left steering joint-->
+    <joint name="left_steering_joint" type="revolute">
+        <origin xyz="0.8 -1.35 0.445" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="left_steer_link"/>
+        <axis xyz="0 0 1"/>
+        <dynmaics damping="0.01" friction="0.01"/>
+        <limit effort="1000" lower="-0.95" upper="0.95" velocity="10"/>
+    </joint>
+
+    <link name="left_steer_link">
+        <origin xyz="0 0 0" rpy="0 0 0">
+    </link>
+
+    <!--front left wheel-->
+    <link name="front_left_wheel">
+        <visual>
+            <origin xyz="0.8 -1.35 ${wheel_radius}" rpy="${pi/2} 0 0"/>
+            <geometry>
+                <mesh filename="package://mobile_robot/meshes/wheel.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1"/>
+            </material>
+        </visual>
+
+        <collsion>
+            <geometry>
+                <cylinder size="${wheel_radius} ${wheel_width}"/>
+            </geometry>
+        </collision>
+
+        <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <joint name="front_left_wheel_joint" type="continuous">
+        <parent link="left_steer_link"/>
+        <child link="front_left_wheel"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <axis xyz="0 0 -1"/>
+    </joint>
 
 </robot>
