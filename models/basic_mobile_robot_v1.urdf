@@ -58,6 +58,10 @@
 
     <gazebo reference="base_link">
         <material>Gazebo/Red</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+        <selfCollide>true</selfCollide>
+        <gravity>true</gravity>
     </gazebo>
 
     <!--Robot Base Footprint-->
@@ -91,8 +95,12 @@
         <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
     </link>
 
-    <gazebo reference="base_link">
+    <gazebo reference="rear_right_wheel">
         <material>Gazebo/Blue</material>
+        <mu1>1.7</mu1>
+        <mu2>1.7</mu2>
+        <selfCollide>true</selfCollide>
+        <gravity>true</gravity>
     </gazebo>
 
 
@@ -124,8 +132,12 @@
         <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
     </link>
 
-    <gazebo reference="base_link">
+    <gazebo reference="rear_left_wheel">
         <material>Gazebo/Blue</material>
+        <mu1>1.7</mu1>
+        <mu2>1.7</mu2>
+        <selfCollide>true</selfCollide>
+        <gravity>true</gravity>
     </gazebo>
 
 
@@ -148,7 +160,11 @@
     </joint>
 
     <link name="right_steer_link">
-        <origin xyz="0 0 0" rpy="0 0 0">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="0"/>
+        </inertial>
     </link>
 
     <!--front right wheel-->
@@ -172,8 +188,12 @@
         <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
     </link>
 
-    <gazebo reference="base_link">
+    <gazebo reference="front_right_wheel">
         <material>Gazebo/Blue</material>
+        <mu1>1.7</mu1>
+        <mu2>1.7</mu2>
+        <selfCollide>true</selfCollide>
+        <gravity>true</gravity>
     </gazebo>
 
 
@@ -195,7 +215,11 @@
     </joint>
 
     <link name="left_steer_link">
-        <origin xyz="0 0 0" rpy="0 0 0">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="0"/>
+        </inertial>
     </link>
 
     <!--front left wheel-->
@@ -219,8 +243,12 @@
         <xacro:box_inertia m="100" r="${wheel_radius}" h="{wheel_width}"/>
     </link>
 
-    <gazebo reference="base_link">
+    <gazebo reference="front_left_wheel">
         <material>Gazebo/Blue</material>
+        <mu1>1.7</mu1>
+        <mu2>1.7</mu2>
+        <selfCollide>true</selfCollide>
+        <gravity>true</gravity>
     </gazebo>
 
 
